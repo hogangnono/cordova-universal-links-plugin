@@ -133,6 +133,10 @@ static NSString *const URL_PARAMS_ATTRIBUTE = @"params";
     NSString *originUrl = originalURLComponents.URL.absoluteString;
     NSString *host = originalURLComponents.host ? originalURLComponents.host : @"";
     NSString *path = originalURLComponents.path ? originalURLComponents.path : @"";
+    // hogangnono.com 같이 path 가 없을 시 whiteout 되는 현상 제거
+    if ([originalURLComponents.path isEqualToString:@""]) {
+        path = @"/";
+    }
     NSString *scheme = originalURLComponents.scheme ? originalURLComponents.scheme : @"";
     NSString *hash = originalURLComponents.fragment ? originalURLComponents.fragment : @"";
 
