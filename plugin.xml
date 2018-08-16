@@ -18,6 +18,7 @@
     <engine name="cordova-android" version=">=4"></engine>
   </engines>
 
+  <preference name="DOMAIN" />
 <!-- JavaScrip Library Sources -->
   <js-module name="universalLinks" src="www/universal_links.js">
     <clobbers target="universalLinks"/>
