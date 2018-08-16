@@ -39,7 +39,7 @@
       </feature>
     </config-file>
 
-    <config-file target="*Entitlements-Debug.plist" mode="merge">
+    <config-file target="*Entitlements-Debug.plist" mode="merge" parent="/*/plist">
       <dict>
         <key>aps-environment</key>
         <string>development</string>
@@ -50,7 +50,7 @@
       </dict>
     </config-file>
 
-    <config-file target="*Entitlements-Release.plist" mode="merge">
+    <config-file target="*Entitlements-Release.plist" mode="merge" parent="/*/plist">
       <dict>
         <key>aps-environment</key>
         <string>development</string>
@@ -60,7 +60,7 @@
         </array>
       </dict>
     </config-file>
-<!-- Objective-C Sources -->
+<!-- Objective-C Sources -->x
 
     <source-file src="src/ios/CULPlugin.m"/>
     <header-file src="src/ios/CULPlugin.h"/>
