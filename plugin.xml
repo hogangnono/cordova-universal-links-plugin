@@ -38,6 +38,27 @@
       </feature>
     </config-file>
 
+    <config-file target="Entitlements-Debug.plist">
+      <dict>
+        <key>aps-environment</key>
+        <string>development</string>
+        <key>com.apple.developer.associated-domains</key>
+        <array>
+          <string>applinks:$DOMAIN</string>
+        </array>
+      </dict>
+    </config-file>
+
+    <config-file target="Entitlements-Release.plist">
+      <dict>
+        <key>aps-environment</key>
+        <string>development</string>
+        <key>com.apple.developer.associated-domains</key>
+        <array>
+          <string>applinks:$DOMAIN</string>
+        </array>
+      </dict>
+    </config-file>
 <!-- Objective-C Sources -->
 
     <source-file src="src/ios/CULPlugin.m"/>
