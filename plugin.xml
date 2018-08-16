@@ -39,7 +39,7 @@
       </feature>
     </config-file>
 
-    <config-file target="Entitlements-Debug.plist">
+    <config-file target="*Entitlements-Debug.plist">
       <dict>
         <key>aps-environment</key>
         <string>development</string>
@@ -50,7 +50,7 @@
       </dict>
     </config-file>
 
-    <config-file target="Entitlements-Release.plist">
+    <config-file target="*Entitlements-Release.plist">
       <dict>
         <key>aps-environment</key>
         <string>development</string>
