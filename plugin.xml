@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin id="cordova-universal-links-plugin" version="1.2.2" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+<plugin id="cordova-universal-links-plugin" version="1.2.3" xmlns="http://apache.org/cordova/ns/plugins/1.0">
 
   <name>Universal Links Plugin</name>
   <description>
@@ -18,7 +18,6 @@
     <engine name="cordova-android" version=">=4"></engine>
   </engines>
 
-  <preference name="DOMAIN" />
 <!-- JavaScrip Library Sources -->
   <js-module name="universalLinks" src="www/universal_links.js">
     <clobbers target="universalLinks"/>
@@ -39,27 +38,6 @@
       </feature>
     </config-file>
 
-    <config-file target="*Entitlements-Debug.plist" mode="merge" parent="plist">
-      <dict>
-        <key>aps-environment</key>
-        <string>development</string>
-        <key>com.apple.developer.associated-domains</key>
-        <array>
-          <string>applinks:$DOMAIN</string>
-        </array>
-      </dict>
-    </config-file>
-
-    <config-file target="*Entitlements-Release.plist" mode="merge" parent="plist">
-      <dict>
-        <key>aps-environment</key>
-        <string>development</string>
-        <key>com.apple.developer.associated-domains</key>
-        <array>
-          <string>applinks:$DOMAIN</string>
-        </array>
-      </dict>
-    </config-file>
 <!-- Objective-C Sources -->x
 
     <source-file src="src/ios/CULPlugin.m"/>
