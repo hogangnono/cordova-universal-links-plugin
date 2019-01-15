@@ -38,7 +38,7 @@
       </feature>
     </config-file>
 
-<!-- Objective-C Sources -->x
+<!-- Objective-C Sources -->
 
     <source-file src="src/ios/CULPlugin.m"/>
     <header-file src="src/ios/CULPlugin.h"/>
