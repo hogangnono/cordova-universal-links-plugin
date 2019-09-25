@@ -25,7 +25,7 @@ module.exports = function(ctx) {
  */
 function run(cordovaContext) {
   var pluginPreferences = configParser.readPreferences(cordovaContext);
-  var platformsList = cordovaContext.opts.platforms;
+  var platformsList = cordovaContext.opts.cordova.platforms;
 
   // if no preferences are found - exit
   if (pluginPreferences == null) {
@@ -37,7 +37,6 @@ function run(cordovaContext) {
     console.warn('No host is specified in the config.xml. Universal Links plugin is not going to work.');
     return;
   }
-
   platformsList.forEach(function(platform) {
     switch (platform) {
       case ANDROID:
@@ -75,6 +74,7 @@ function activateUniversalLinksInAndroid(cordovaContext, pluginPreferences) {
  * @param {Object} pluginPreferences - plugin preferences from the config.xml file. Basically, content from <universal-links> tag.
  */
 function activateUniversalLinksInIos(cordovaContext, pluginPreferences) {
+  console.log('afterPrepareHook activateUniversalLinksInIos');
   // modify xcode project preferences
   iosProjectPreferences.enableAssociativeDomainsCapability(cordovaContext);
 

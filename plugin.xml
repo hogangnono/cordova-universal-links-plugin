@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin id="cordova-universal-links-plugin" version="1.2.3-hogangnono" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+<plugin id="cordova-universal-links-plugin" version="1.2.8-hogangnono" xmlns="http://apache.org/cordova/ns/plugins/1.0">
 
   <name>Universal Links Plugin</name>
   <description>
@@ -36,6 +36,18 @@
         <param name="ios-package" value="CULPlugin"/>
         <param name="onload" value="true"/>
       </feature>
+    </config-file>
+    <config-file target="*-Debug.plist" parent="com.apple.developer.associated-domains">
+      <array>
+        <string>applinks:dev.hogangnono.com</string>
+        <string>applinks:hogangnono.com</string>
+      </array>
+    </config-file>
+    <config-file target="*-Release.plist" parent="com.apple.developer.associated-domains">
+      <array>
+        <string>applinks:dev.hogangnono.com</string>
+        <string>applinks:hogangnono.com</string>
+      </array>
     </config-file>
 
 <!-- Objective-C Sources -->
