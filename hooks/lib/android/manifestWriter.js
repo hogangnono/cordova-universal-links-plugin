@@ -44,13 +44,12 @@ function writePreferences(cordovaContext, pluginPreferences) {
  * @return {Object} manifest data without old intent-filters
  */
 function removeOldOptions(manifestData) {
-  var cleanManifest = manifestData;
   var activities = manifestData['manifest']['application'][0]['activity'];
+  var mainActivity = activities.find(activity => activity['$']['android:name'] === 'MainActivity');
 
-  activities.forEach(removeIntentFiltersFromActivity);
-  cleanManifest['manifest']['application'][0]['activity'] = activities;
+  removeIntentFiltersFromActivity(mainActivity);
 
-  return cleanManifest;
+  return manifestData;
 }
 
 /**
