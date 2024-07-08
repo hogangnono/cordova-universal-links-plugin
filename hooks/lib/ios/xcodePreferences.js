@@ -145,11 +145,22 @@ function loadProjectFile() {
       platform_ios = context.requireCordovaModule('cordova-lib/src/plugman/platforms/ios');
       projectFile = platform_ios.parse(iosPlatformPath());
     } catch (e) {
-      // try cordova 7.0 structure
-      var iosPlatformApi = require(path.join(iosPlatformPath(), '/cordova/Api'));
-      var projectFileApi = require(path.join(iosPlatformPath(), '/cordova/lib/projectFile.js'));
-      var locations = (new iosPlatformApi()).locations;
-      projectFile = projectFileApi.parse(locations);
+      try {
+        // try cordova 7.0 structure
+        var iosPlatformApi = require(path.join(iosPlatformPath(), '/cordova/Api'));
+        var projectFileApi = require(path.join(iosPlatformPath(), '/cordova/lib/projectFile.js'));
+        var locations = (new iosPlatformApi()).locations;
+        projectFile = projectFileApi.parse(locations);    
+      } catch (e) {
+        // try cordova 7.0.1 structure. This is necessary following the release of
+        // cordova-ios MR 1203, which stopped copying .js files into /lib:
+        // https://github.com/apache/cordova-ios/pull/1203
+        var iosPlatformApi = require('cordova-ios/lib/Api.js');
+        var projectFileApi = require('cordova-ios/lib/projectFile.js');
+        platformApi = new iosPlatformApi("ios", iosPlatformPath());
+        var locations = platformApi.locations;
+        projectFile = projectFileApi.parse(locations);   
+      }  
     }
   }
   return projectFile;
