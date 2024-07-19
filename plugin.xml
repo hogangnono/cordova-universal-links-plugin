@@ -37,18 +37,6 @@
         <param name="onload" value="true"/>
       </feature>
     </config-file>
-    <config-file target="*-Debug.plist" parent="com.apple.developer.associated-domains">
-      <array>
-        <string>applinks:dev.hogangnono.com</string>
-        <string>applinks:hogangnono.com</string>
-      </array>
-    </config-file>
-    <config-file target="*-Release.plist" parent="com.apple.developer.associated-domains">
-      <array>
-        <string>applinks:dev.hogangnono.com</string>
-        <string>applinks:hogangnono.com</string>
-      </array>
-    </config-file>
 
 <!-- Objective-C Sources -->
 
