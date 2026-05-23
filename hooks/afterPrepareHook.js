@@ -76,7 +76,7 @@ function activateUniversalLinksInAndroid(cordovaContext, pluginPreferences) {
 function activateUniversalLinksInIos(cordovaContext, pluginPreferences) {
   console.log('afterPrepareHook activateUniversalLinksInIos');
   // modify xcode project preferences
-  iosProjectPreferences.enableAssociativeDomainsCapability(cordovaContext);
+  //iosProjectPreferences.enableAssociativeDomainsCapability(cordovaContext);
 
   // generate entitlements file
   iosProjectEntitlements.generateAssociatedDomainsEntitlements(cordovaContext, pluginPreferences);
