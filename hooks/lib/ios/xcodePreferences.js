@@ -56,10 +56,23 @@ function activateAssociativeDomains(xcodeProject) {
   var config;
   var buildSettings;
   var deploymentTargetIsUpdated;
+  var entitlementsAssigned = false;
+  var entitlementsPreserved = false;
 
   for (config in configurations) {
     buildSettings = configurations[config].buildSettings;
-    buildSettings['CODE_SIGN_ENTITLEMENTS'] = '"' + entitlementsFilePath + '"';
+
+    // Preserve host project's CODE_SIGN_ENTITLEMENTS if already set.
+    // Some projects use per-configuration entitlements files (e.g., Entitlements-Debug.plist,
+    // Entitlements-Release.plist) that carry critical keys like aps-environment.
+    // Overwriting them silently drops those capabilities at sign time. (HGNN-13889)
+    var existing = buildSettings['CODE_SIGN_ENTITLEMENTS'];
+    if (existing && existing !== '""') {
+      entitlementsPreserved = true;
+    } else {
+      buildSettings['CODE_SIGN_ENTITLEMENTS'] = '"' + entitlementsFilePath + '"';
+      entitlementsAssigned = true;
+    }
 
     // if deployment target is less then the required one - increase it
     if (buildSettings['IPHONEOS_DEPLOYMENT_TARGET']) {
@@ -77,7 +90,12 @@ function activateAssociativeDomains(xcodeProject) {
     console.log('IOS project now has deployment target set as: ' + IOS_DEPLOYMENT_TARGET);
   }
 
-  console.log('IOS project Code Sign Entitlements now set to: ' + entitlementsFilePath);
+  if (entitlementsAssigned) {
+    console.log('IOS project Code Sign Entitlements now set to: ' + entitlementsFilePath);
+  }
+  if (entitlementsPreserved) {
+    console.log('IOS project Code Sign Entitlements already configured; preserving existing value.');
+  }
 }
 
 // endregion
