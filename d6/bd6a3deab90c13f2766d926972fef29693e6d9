@@ -1,0 +1,23 @@
+plugin.xml
+  s_327395b7755301::t_c87920b1cecc9a 3
+package.json
+  s_327395b7755301::t_9d7bba7eb446bb 3
+hooks/lib/ios/xcodePreferences.js
+  s_327395b7755301::t_0d6ec1f75b1676 59-60,64-75,93-98
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.1",
+  "base_commit_sha": "d6bd6a3deab90c13f2766d926972fef29693e6d9",
+  "prompts": {},
+  "sessions": {
+    "s_327395b7755301": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bfa3a18c-96ea-4162-baed-c643ab4ef4d0",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "heath-song <heath@zigbang.com>"
+    }
+  }
+}
