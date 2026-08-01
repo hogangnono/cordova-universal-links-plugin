@@ -134,7 +134,7 @@ function domainsListEntryForHost(host) {
   // 특정 도메인을 플러그인에 하드코딩하지 않고 phase 와 config.xml host 만으로 파생한다.
   var phase = context && context.opts && context.opts.options ? context.opts.options.phase : null;
   if (host.phaseMode && phase && phase !== 'prod') {
-    return 'applinks:' + phase + '.' + host.name + '?mode=' + host.phaseMode;
+    return `applinks:${phase}.${host.name}?mode=${host.phaseMode}`;
   }
 
   return 'applinks:' + host.name;
