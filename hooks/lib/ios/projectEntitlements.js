@@ -128,6 +128,15 @@ function generateAssociatedDomainsContent(pluginPreferences) {
  * @return {String} record
  */
 function domainsListEntryForHost(host) {
+  // phase-mode 가 지정된 host 는 비-prod phase 빌드에서 phase 서브도메인 + ?mode 를 붙인다.
+  // 예) phase=dev, name=hogangnono.com, phase-mode=developer
+  //     -> applinks:dev.hogangnono.com?mode=developer
+  // 특정 도메인을 플러그인에 하드코딩하지 않고 phase 와 config.xml host 만으로 파생한다.
+  var phase = context && context.opts && context.opts.options ? context.opts.options.phase : null;
+  if (host.phaseMode && phase && phase !== 'prod') {
+    return 'applinks:' + phase + '.' + host.name + '?mode=' + host.phaseMode;
+  }
+
   return 'applinks:' + host.name;
 }
 

@@ -109,6 +109,13 @@ function constructHostEntry(xmlElement) {
     host.scheme = hostProperties.scheme;
   }
 
+  // read phase-mode if defined.
+  // 지정된 host 는 비-prod phase 빌드에서 associated-domains 를 `{phase}.{name}?mode={phase-mode}` 로
+  // 생성한다 (phase 서브도메인 + iOS AASA developer mode). 도메인은 config.xml 이 소유한다.
+  if (hostProperties['phase-mode'] != null) {
+    host.phaseMode = hostProperties['phase-mode'];
+  }
+
   // construct paths list, defined for the given host
   host.paths = constructPaths(xmlElement);
 
