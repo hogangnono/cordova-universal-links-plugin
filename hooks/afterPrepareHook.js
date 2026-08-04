@@ -38,8 +38,7 @@ function run(cordovaContext) {
     return;
   }
 
-  // phase-mode 가 지정된 host 는 비-prod phase 빌드에서 phase 서브도메인으로 변환한다.
-  // 여기서 한 번 변환하면 iOS entitlement / Android intent-filter / AASA 가 모두 이 host 를 사용한다.
+  // 여기서 한 번 변환하면 iOS entitlement / Android intent-filter / AASA 가 모두 이 host 를 쓴다.
   applyPhaseSubdomain(cordovaContext, pluginPreferences);
 
   platformsList.forEach(function(platform) {
@@ -60,7 +59,6 @@ function run(cordovaContext) {
 
 /**
  * phase-mode 가 지정된 host 의 name 을 `{phase}.{name}` 으로 변환한다 (비-prod phase 빌드).
- * phase-mode 미지정 host(onelink 등) 와 prod 은 그대로 둔다.
  * 특정 도메인을 하드코딩하지 않고 config.xml 의 host + cordova --phase 로만 파생한다.
  *
  * @param {Object} cordovaContext - cordova context object
@@ -76,6 +74,8 @@ function applyPhaseSubdomain(cordovaContext, pluginPreferences) {
   pluginPreferences.hosts.forEach(function(host) {
     if (host.phaseMode) {
       host.name = phase + '.' + host.name;
+      // 서브도메인 prefix 와 iOS ?mode= suffix 가 이 플래그 하나에서 파생돼 판단 분산(drift)을 막는다.
+      host.applyDeveloperMode = true;
     }
   });
 }

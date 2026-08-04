@@ -128,11 +128,9 @@ function generateAssociatedDomainsContent(pluginPreferences) {
  * @return {String} record
  */
 function domainsListEntryForHost(host) {
-  // host.name 은 afterPrepareHook 에서 이미 phase 서브도메인으로 변환됨(비-prod).
-  // phase-mode 가 지정된 host 는 iOS AASA developer mode 를 위해 ?mode= 를 덧붙인다.
-  // 예) phase=dev, host.name=dev.hogangnono.com, phase-mode=developer -> applinks:dev.hogangnono.com?mode=developer
-  var phase = context && context.opts && context.opts.options ? context.opts.options.phase : null;
-  if (host.phaseMode && phase && phase !== 'prod') {
+  // host.name 은 afterPrepareHook 에서 phase 서브도메인 변환 + applyDeveloperMode 세팅을 마친 상태다.
+  // 여기서 phase 를 다시 판단하지 않고 그 플래그만 소비한다.
+  if (host.applyDeveloperMode) {
     return `applinks:${host.name}?mode=${host.phaseMode}`;
   }
 
