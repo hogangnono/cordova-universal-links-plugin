@@ -128,7 +128,13 @@ function generateAssociatedDomainsContent(pluginPreferences) {
  * @return {String} record
  */
 function domainsListEntryForHost(host) {
-  return 'applinks:' + host.name;
+  // host.name 은 afterPrepareHook 에서 phase 서브도메인 변환 + applyDeveloperMode 세팅을 마친 상태다.
+  // 여기서 phase 를 다시 판단하지 않고 그 플래그만 소비한다.
+  if (host.applyDeveloperMode) {
+    return `applinks:${host.name}?mode=${host.phaseMode}`;
+  }
+
+  return `applinks:${host.name}`;
 }
 
 // endregion
