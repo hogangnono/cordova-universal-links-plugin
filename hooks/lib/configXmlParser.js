@@ -109,6 +109,11 @@ function constructHostEntry(xmlElement) {
     host.scheme = hostProperties.scheme;
   }
 
+  // read phase-mode if defined
+  if (hostProperties['phase-mode'] != null) {
+    host.phaseMode = hostProperties['phase-mode'];
+  }
+
   // construct paths list, defined for the given host
   host.paths = constructPaths(xmlElement);
 
